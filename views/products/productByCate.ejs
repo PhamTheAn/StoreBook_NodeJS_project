@@ -1,0 +1,17 @@
+<% category.forEach(function(product ){ %>
+    <div style="border-bottom: 1px solid #eae9ed;" class="col">
+      <div style="padding-bottom: 28px;" class="box_card d-flex">
+        <a href="/product/<%= product.id %>" class="cover col-5">
+          <div class="product_image">
+            <img class="product_image_link" src="<%= product.image %>" alt="">
+          </div>
+        </a>
+        <a href="/product/<%= product.id %>" class="product_info pt-2 col-7">
+          <h5 class="product_name"><%= product.name_product %></h5>
+          <p class="product_author"><%= product.author %></p>
+          <div class="product_price"><%= product.price %> Vnđ</div>
+        </a>
+      </div>
+        
+      </div>
+    <% }) %>

@@ -1,0 +1,170 @@
+<%- include('../layouts/header.ejs')%>
+    <style>
+        .box_detail_product,
+        .box_comment_detail_product {
+            max-width: 976px;
+            margin: auto;
+            padding-top: 32px;
+        }
+
+        .box_comment_detail_product {
+            padding-left: 12px;
+        }
+
+        .product_image_link {
+            width: 100%;
+            background-color: #fff4;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-right: 6px;
+            -o-object-fit: contain;
+            object-fit: contain;
+            max-width: none;
+            transition: transform 200ms ease-in, box-shadow 200ms ease-in;
+        }
+
+        .product_name {
+            font-family: GT Super Bold, serif;
+            line-height: 1.25;
+            color: var(--color-dark-text);
+            letter-spacing: -0.1px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+        }
+
+        .product_genre {
+            font-size: 18px;
+            padding: 8px 0 8px 0;
+        }
+
+        .product_author {
+            font-family: cursive;
+        }
+
+        .product_price {
+            font-weight: 400;
+            font-family: monospace;
+            padding-bottom: 8px;
+        }
+
+        .title_desc {
+            font-family: GT Super Bold, serif;
+        }
+
+        .product_desc {
+            font-weight: 500;
+            font-family: IBM Plex Sans, sans-serif;
+            font-size: 18px;
+        }
+
+        /* Comment */
+
+        .icon_user {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .icon_user_comment {
+            font-size: 24px;
+            margin: 9px;
+        }
+
+        .img_user {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .comment_content_username {
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .comment_content {
+            margin: 4px 0;
+            font-weight: 400;
+        }
+
+        .box_comment_content {
+            border: 1px solid #9f9f9f;
+            border-radius: 10px;
+        }
+
+        .comment_content_username,
+        .comment_content {
+            padding: 0 8px;
+        }
+
+        .comment_time {
+            font-size: 12px;
+            padding-left: 8px;
+        }
+    </style>
+    <div class="box_detail_product row d-flex">
+        <div class="product_image col-4">
+            <img src="<%= product.image %>" alt="" class="product_image_link">
+        </div>
+        <div class="product_info col-8">
+            <h2 class="product_name">
+                <%= product.name_product %>
+            </h2>
+            <div class="product_genre">Thể loại: <%= product.genre %>
+            </div>
+            <p class="product_author">
+                <%= product.author %> (Author)
+            </p>
+            <div class="product_price">
+                <%= product.price %> Vnđ
+            </div>
+            <h2 class="title_desc">Description</h2>
+            <p class="product_desc">
+                <%= product.description %>
+            </p>
+        </div>
+    </div>
+    <div class="box_comment_detail_product">
+        <div class="box_input_comment input-group d-flex">
+            <form class="input-group mb-3" action="/product/comment/<%= product.id %>" method="POST">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+
+                <input name="commentProduct" type="text" class="form-control" placeholder="Viết bình luận ...">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+
+        <hr>
+
+    <% comments.forEach(function(comment ){ %>
+            <div class="box_container-comment mb-3">
+                <div class="container_comment_user d-flex">
+                    <div class="img_user">
+                        <i class="fa-solid fa-user icon_user_comment"></i>
+                    </div>
+                    <div class="box_comment_content">
+                        <div class="comment_content_info d-flex" style="align-items: center;">
+                            <p class="comment_content_username" style="font-weight: 600;"><%= comment.username %></p>
+                            <div style="padding-right: 8px;" class="comment_time">
+                                <%= comment.relativeTime%>
+                            </div>
+                        </div>
+                        <div class="comment_content"><%= comment.content %></div>
+                    </div>
+                </div>
+            </div>
+      <% }) %>
+
+    </div>
+    <%- include('../layouts/footer.ejs')%>

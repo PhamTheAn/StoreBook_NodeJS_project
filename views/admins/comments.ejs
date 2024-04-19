@@ -1,0 +1,115 @@
+<%- include('../layouts/header.ejs')%>
+<div class="container-fluid">
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row">
+          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+              <ul class="nav flex-column">
+                <li style="font-size: 24px;" class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <span data-feather="home"></span>
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                  </a>
+                </li>
+                <hr>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/admin/categories">
+                    <span data-feather="shopping-cart"></span>
+                    <i class="fa-solid fa-list"></i>
+                    Categories
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/categories">
+                    <span data-feather="shopping-cart"></span>
+                    <i class="fa-solid fa-book"></i>
+                    Products
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="users"></span>
+                    <i class="fa-solid fa-user"></i>
+                    User
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/comments">
+                    <span data-feather="users"></span>
+                    <i class="fa-solid fa-comment"></i>
+                    Comments
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Comment</h1>
+              <div class="mb-2 mb-md-0">
+                <div class="me-2">
+                </div>
+              </div>
+            </div>
+  
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Content</th>
+                  <th scope="col">User ID</th>
+                  <th scope="col">User name</th>
+                  <th scope="col">Product ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% comments.forEach(function(comment){ %>
+                  <tr>
+                    <th scope="row"><%= comment.id %></th>
+                    <td><%= comment.content %></td>
+                    <td><%= comment.userId %></td>
+                    <td><%= comment.username %> </td>
+                    <td><%= comment.productId %></td>
+                    <td class="d-flex justify-content-between" >
+                      <!-- <a href="/admin/comments/edit/<%= comment.id %>" class="btn btn-outline-warning me-2">Edit</a> -->
+                      <form id="deleteForm<%= comment.id %>" method="POST" action="/admin/comments/delete/<%= comment.id %>" onsubmit="return confirmDelete(event, '<%= comment.id %>')">
+                        <button class="btn btn-outline-danger" type="submit">Delete</button>
+                      </form>                    
+                      <!-- onsubmit="return confirmDelete()" -->
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function confirmDelete(event, commentId) {
+      // event.preventDefault();
+      console.log("ID:", commentId);
+      const paraClass = `deleteForm${commentId}`
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.querySelector(`#${paraClass}`).submit();
+        }
+      });
+      return false;
+    }
+  </script>
+
+<%- include('../layouts/footer.ejs')%>

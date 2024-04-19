@@ -1,0 +1,24 @@
+<%- include('../layouts/header')%>
+<h1>User Management </h1>
+<a href="/user/new" class="btn btn-outline-success">Create</a>
+
+<section style="background-color: #9de2ff;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user){ %>
+            <%- include('user', {user: user}); %>
+            <% }); %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../layouts/footer')%>

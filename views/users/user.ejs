@@ -1,0 +1,11 @@
+<tr>
+    <th scope="row"><%= user.id %></th>
+    <td><%= user.firstname %></td>
+    <td><%= user.lastname %></td>
+    <td><%= user.email %></td>
+    <td>
+        <button type="button" class="btn btn-outline-warning">Edit</button>
+        <a href="/user/delete/<%=user.id%>" type="button"
+            class="btn btn-outline-danger">Delete</a>
+    </td>
+</tr>

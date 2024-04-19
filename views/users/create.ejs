@@ -1,0 +1,16 @@
+<%- include('../layouts/header')%>
+<h1>User Management </h1>
+
+<form action="/user/create" method="post">
+
+    <label class="form-label">First Name</label>
+    <input name="firstname" type="text" class="form-control">
+    <label class="form-label">Last Name</label>
+    <input name="lastname" type="text" class="form-control">
+    <label class="form-label">Email</label>
+    <input name="email" type="text" class="form-control">
+    <button type="submit" class="btn btn-outline-success">Submit</button>
+
+</form>
+
+<%- include('../layouts/footer')%>

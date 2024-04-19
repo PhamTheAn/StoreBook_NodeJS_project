@@ -1,0 +1,36 @@
+{
+  "name": "asmnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "build:css": "postcss public/css/index.css -o public/css/index.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "feather-icons": "^4.29.1",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.3",
+    "node-notifier": "^10.0.1",
+    "nodemon": "^3.0.1",
+    "notifier": "^0.2.0",
+    "sequelize": "^6.35.0",
+    "tailwindcss": "^3.3.5",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
+    "postcss": "^8.4.31"
+  }
+}
